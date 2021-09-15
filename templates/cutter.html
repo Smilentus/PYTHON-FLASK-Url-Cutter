@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title> Сокращатель ссылок </title>
+</head>
+<body>
+    <a href="/">На главную</a>
+    <form action="/cutter" method="POST">
+        <span> Сокращатель </span>
+        <p>*Примечание, короткую ссылку можно оставить пустой, для автоматического создания
+        </p>
+        <input type="text" name="longUrl" placeholder="Введите ссылку...">
+        <input type="text" name="shortUrl" placeholder="Введите короткую ссылку...">
+        <input type="submit" value="Сократить">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <span>{{ message }}</span>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </form>
+</body>
+</html>
